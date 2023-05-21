@@ -1,0 +1,13 @@
+AllCops:
+  Exclude:
+    - Gemfile
+    - Rakefile
+    - config.ru
+    - config/**/*
+    - script/**/*
+    - spec/*.*
+    - test/**/*
+Metrics/LineLength:
+  Max: 120
+Style/StringLiterals:
+  EnforcedStyle: double_quotes

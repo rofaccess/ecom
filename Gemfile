@@ -19,6 +19,13 @@ group :test do
   gem 'simplecov', '~> 0.17', require: false
 end
 
+group :development do
+  # A Ruby static code analyzer and formatter, based on the community Ruby style guide. https://github.com/rubocop/rubocop/tree/v0.41.2
+  # Nota: Se usa rubocop y no rubocop-rails porque a pesar que rubocop-rails tiene el tag 0.41.2, este en realidad era un fork de rubocop 0.41.2 y no se puede
+  # instalar desde rubocop-rails. La primer versión de rubocop-rails es la 2.0.0 y no es compatible con ruby 1.9.3
+  gem 'rubocop', '~> 0.41', require: false
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
