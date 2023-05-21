@@ -24,7 +24,16 @@ group :development do
   # Nota: Se usa rubocop y no rubocop-rails porque a pesar que rubocop-rails tiene el tag 0.41.2, este en realidad era un fork de rubocop 0.41.2 y no se puede
   # instalar desde rubocop-rails. La primer versión de rubocop-rails es la 2.0.0 y no es compatible con ruby 1.9.3
   gem 'rubocop', '~> 0.41', require: false
+
+  # A static analysis security vulnerability scanner for Ruby on Rails applications. https://github.com/presidentbeef/brakeman/tree/v4.4.0
+  gem 'brakeman', '~> 4.4', require: false
+
+  # help to kill N+1 queries and unused eager loading. https://github.com/flyerhzm/bullet/tree/5.4.3
+  gem 'bullet', '~> 5.4.0'
 end
+
+# Simple, efficient background processing for Ruby. https://github.com/sidekiq/sidekiq/tree/v5.0.3
+gem 'sidekiq', '~> 5.0.3'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
