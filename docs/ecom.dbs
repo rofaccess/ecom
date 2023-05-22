@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ecom" id="Project-9f7" database="PostgreSQL" >
+	<schema name="ecom" >
+		<table name="clients" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="person_id" type="integer" jt="4" mandatory="y" />
+			<index name="pk_clients" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_clients_persons" to_schema="ecom" to_table="persons" >
+				<fk_column name="person_id" pk="id" />
+			</fk>
+		</table>
+		<table name="persons" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="first_name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="last_name" type="varchar" length="100" jt="12" />
+			<column name="document_number" type="varchar" length="100" jt="12" mandatory="y" />
+			<index name="pk_persons" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="product_categories" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<index name="pk_product_categories" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="products" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="name" prior="price" type="varchar" length="100" decimal="2" jt="12" mandatory="y" />
+			<column name="description" prior="price" type="varchar" length="250" decimal="2" jt="12" />
+			<column name="price" type="decimal" length="10" decimal="2" jt="3" mandatory="y" />
+			<index name="pk_products" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="products_product_categories" prior="product_product_categories" >
+			<column name="product_id" type="integer" jt="4" mandatory="y" />
+			<column name="product_category_id" type="integer" jt="4" mandatory="y" />
+			<fk name="fk_products_product_categories_products" to_schema="ecom" to_table="products" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+			<fk name="fk_products_product_categories_product_categories" to_schema="ecom" to_table="product_categories" >
+				<fk_column name="product_category_id" pk="id" />
+			</fk>
+		</table>
+		<table name="purchases" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="date" type="date" jt="91" mandatory="y" />
+			<column name="client_id" type="integer" jt="4" mandatory="y" />
+			<column name="product_id" type="integer" jt="4" mandatory="y" />
+			<column name="price" type="decimal" length="10" decimal="2" jt="3" mandatory="y" />
+			<index name="pk_purchases" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_purchases_clients" to_schema="ecom" to_table="clients" >
+				<fk_column name="client_id" pk="id" />
+			</fk>
+			<fk name="fk_purchases_products" to_schema="ecom" to_table="products" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+		</table>
+		<table name="users" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="email" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="person_id" type="integer" jt="4" mandatory="y" />
+			<index name="pk_users" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_users_persons" to_schema="ecom" to_table="persons" options="" >
+				<fk_column name="person_id" pk="id" />
+			</fk>
+		</table>
+	</schema>
+	<connector name="PostgreSQL" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-42.5.3.jar" driver_desc="Standard" host="localhost" port="5432" instance="postgres" useSystemProxy="false" />
+	<layout name="Default Layout" id="Layout-26ec" show_column_type="y" show_relation="columns" >
+		<entity schema="ecom" name="clients" color="C1D8EE" x="672" y="192" />
+		<entity schema="ecom" name="persons" color="C1D8EE" x="1040" y="192" />
+		<entity schema="ecom" name="product_categories" color="C1D8EE" x="800" y="48" />
+		<entity schema="ecom" name="products" color="C1D8EE" x="48" y="48" />
+		<entity schema="ecom" name="products_product_categories" color="C1D8EE" x="368" y="48" />
+		<entity schema="ecom" name="purchases" color="C1D8EE" x="368" y="208" />
+		<entity schema="ecom" name="users" color="C1D8EE" x="672" y="320" />
+		<shape x="288" y="352" style="Rectangle" color="FF0000" >
+			<comment><![CDATA[Se guarda el precio en purchases porque 
+es un dato variable de product]]></comment>
+		</shape>
+		<shape x="1008" y="96" style="Rectangle" color="FF0000" >
+			<comment><![CDATA[Las relaciones entre persons y clients, y,  persons y users 
+debe ser 1 a 1 pero todavía no sé representarlos en esta herramienta.]]></comment>
+		</shape>
+		<shape x="624" y="448" style="Rectangle" color="FF0000" >
+			<comment><![CDATA[El email es un dato que podria tener un person y podría considerarse
+un dato de contacto, pero, en este caso el email está en users porque
+se usará para loguearse al sistema.]]></comment>
+		</shape>
+	</layout>
+</project>

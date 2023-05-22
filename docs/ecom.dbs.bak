@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ecom" id="Project-9f7" database="PostgreSQL" >
+	<schema name="ecom" >
+		<table name="clients" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="first_name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="last_name" type="varchar" length="100" jt="12" />
+			<index name="pk_clients" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="product_categories" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<index name="pk_product_categories" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="products" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="name" prior="price" type="varchar" length="100" decimal="2" jt="12" mandatory="y" />
+			<column name="description" prior="price" type="varchar" length="250" decimal="2" jt="12" />
+			<column name="price" type="decimal" length="10" decimal="2" jt="3" mandatory="y" />
+			<index name="pk_products" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="products_product_categories" prior="product_product_categories" >
+			<column name="product_id" type="integer" jt="4" mandatory="y" />
+			<column name="product_category_id" type="integer" jt="4" mandatory="y" />
+			<fk name="fk_products_product_categories_products" to_schema="ecom" to_table="products" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+			<fk name="fk_products_product_categories_product_categories" to_schema="ecom" to_table="product_categories" >
+				<fk_column name="product_category_id" pk="id" />
+			</fk>
+		</table>
+		<table name="purchases" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="date" type="date" jt="91" mandatory="y" />
+			<column name="client_id" type="integer" jt="4" mandatory="y" />
+			<column name="product_id" type="integer" jt="4" mandatory="y" />
+			<column name="price" type="decimal" length="10" decimal="2" jt="3" mandatory="y" >
+				<comment><![CDATA[El precio del producto debe guardarse en la compra porque es un dato que puede variar.]]></comment>
+			</column>
+			<index name="pk_purchases" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_purchases_clients" to_schema="ecom" to_table="clients" >
+				<fk_column name="client_id" pk="id" />
+			</fk>
+			<fk name="fk_purchases_products" to_schema="ecom" to_table="products" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+		</table>
+	</schema>
+	<connector name="PostgreSQL" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-42.5.3.jar" driver_desc="Standard" host="localhost" port="5432" instance="postgres" useSystemProxy="false" />
+	<layout name="Default Layout" id="Layout-26ec" show_column_type="y" show_relation="columns" >
+		<entity schema="ecom" name="clients" color="C1D8EE" x="704" y="192" />
+		<entity schema="ecom" name="product_categories" color="C1D8EE" x="800" y="48" />
+		<entity schema="ecom" name="products" color="C1D8EE" x="48" y="48" />
+		<entity schema="ecom" name="products_product_categories" color="C1D8EE" x="368" y="48" />
+		<entity schema="ecom" name="purchases" color="C1D8EE" x="368" y="208" />
+	</layout>
+</project>

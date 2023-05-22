@@ -32,6 +32,9 @@ group :development do
   gem 'bullet', '~> 5.4.0'
 end
 
+# Easy file attachment management for ActiveRecord. https://github.com/thoughtbot/paperclip/tree/v4.2.4
+# gem 'paperclip', '~> 4.2'
+
 # Simple, efficient background processing for Ruby. https://github.com/sidekiq/sidekiq/tree/v5.0.3
 gem 'sidekiq', '~> 5.0.3'
 
