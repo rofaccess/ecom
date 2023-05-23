@@ -8,15 +8,17 @@ gem 'rails-api', '0.4.1'
 gem 'pg', '0.18.4'
 
 group :test do
-  # RSpec for Rails. https://github.com/rspec/rspec-rails/tree/v3.9.1
-  gem 'rspec-rails', '3.9.1'
-
   # Code coverage for Ruby with a powerful configuration library and automatic merging of coverage across test suites.
   # https://github.com/simplecov-ruby/simplecov/tree/v0.17.1
   gem 'simplecov', '0.17.1', require: false
 end
 
 group :development do
+  # RSpec for Rails. https://github.com/rspec/rspec-rails/tree/v3.9.1
+  # Nota: Si esta gema se agrega en el grupo test, al usar 'rails g scaffold product name:string' no se generaran los specs
+  # y se seguirá usando unit tests.
+  gem 'rspec-rails', '3.9.1'
+
   # A Ruby static code analyzer and formatter, based on the community Ruby style guide. https://github.com/rubocop/rubocop/tree/v0.41.2
   # Nota: Se usa rubocop y no rubocop-rails porque a pesar que rubocop-rails tiene el tag 0.41.2, este en realidad era un fork de rubocop 0.41.2 y no se puede
   # instalar desde rubocop-rails. La primer versión de rubocop-rails es la 2.0.0 y no es compatible con ruby 1.9.3
