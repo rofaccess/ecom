@@ -35,6 +35,11 @@ end
 # Simple, efficient background processing for Ruby. https://github.com/sidekiq/sidekiq/tree/v2.17.8
 gem 'sidekiq', '2.17.8'
 
+# Required gems to debug specs in RubyMine using ruby 1.9.x
+gem 'ruby-debug-base19x', '0.11.32', require: false
+# An interface which glues ruby-debug to IDEs like Eclipse (RDT), NetBeans and RubyMine. https://github.com/ruby-debug/ruby-debug-ide/tree/master
+gem 'ruby-debug-ide', '0.7.3', require: false
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
