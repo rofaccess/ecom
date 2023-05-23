@@ -27,7 +27,14 @@ group :development do
 
   # help to kill N+1 queries and unused eager loading. https://github.com/flyerhzm/bullet/tree/5.4.3
   gem 'bullet', '5.4.3'
+
+  # A library for generating fake data such as names, addresses, and phone numbers. https://github.com/faker-ruby/faker/tree/v1.6.3
+  gem 'faker', '1.6.3'
+
+  # A library for bulk insertion of data into your database using ActiveRecord. https://github.com/zdennis/activerecord-import/tree/v1.0.4
+  gem 'activerecord-import', '1.0.3'
 end
+
 
 # Easy file attachment management for ActiveRecord. https://github.com/thoughtbot/paperclip/tree/v4.2.4
 # gem 'paperclip', '4.2.4'
