@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20230523045206) do
+ActiveRecord::Schema.define(:version => 20230528150950) do
+
+  create_table "people", :force => true do |t|
+    t.string   "first_name",      :limit => 100, :null => false
+    t.string   "last_name",       :limit => 100, :null => false
+    t.string   "document_number", :limit => 100, :null => false
+    t.string   "address",         :limit => 150, :null => false
+    t.string   "phone",           :limit => 50,  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "people", ["document_number"], :name => "index_people_on_document_number", :unique => true
 
   create_table "products", :force => true do |t|
     t.string   "name",        :limit => 100,                                :null => false
