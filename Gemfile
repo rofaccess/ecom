@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Ruby on Rails. https://github.com/rails/rails/tree/v3.2.22.5
 gem 'rails', '3.2.22.5'
 # Rails for API only applications. https://github.com/rails-api/rails-api/tree/v0.4.1
+# Se usar esta gema porque es una versión light para APIs
 gem 'rails-api', '0.4.1'
 # A PostgreSQL client library for Ruby. https://github.com/ged/ruby-pg/tree/v0.18.4
 gem 'pg', '0.18.4'
@@ -34,11 +35,12 @@ end
 
 group :development, :test do
   # RSpec for Rails. https://github.com/rspec/rspec-rails/tree/v3.9.1
-  # Nota: Si esta gema se agrega en el grupo solamente test, al usar 'rails g scaffold product name:string' no se generaran los specs
+  # Nota: Si esta gema se agrega solo en el grupo test, al usar 'rails g scaffold product name:string' no se generaran los specs
   # y se seguirá usando unit tests.
   gem 'rspec-rails', '3.9.1'
 
   # Factory Bot Rails. https://github.com/thoughtbot/factory_bot_rails/tree/v4.11.1
+  # Los fixtures son reemplazados por factories al agregar esta gema
   gem 'factory_bot_rails', '4.11.1'
 end
 
