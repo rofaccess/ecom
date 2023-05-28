@@ -14,11 +14,13 @@
 ActiveRecord::Schema.define(:version => 20230523045206) do
 
   create_table "products", :force => true do |t|
-    t.string   "name"
+    t.string   "name",        :limit => 100,                                :null => false
     t.text     "description"
-    t.decimal  "price"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.decimal  "price",                      :precision => 10, :scale => 2, :null => false
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
   end
+
+  add_index "products", ["name"], :name => "index_products_on_name", :unique => true
 
 end
