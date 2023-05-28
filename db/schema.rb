@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20230528151445) do
+ActiveRecord::Schema.define(:version => 20230528165008) do
 
   create_table "clients", :force => true do |t|
     t.integer  "person_id",  :null => false
@@ -43,6 +43,28 @@ ActiveRecord::Schema.define(:version => 20230528151445) do
 
   add_index "products", ["name"], :name => "index_products_on_name", :unique => true
 
+  create_table "sale_order_products", :force => true do |t|
+    t.integer  "sale_order_id", :null => false
+    t.integer  "product_id",    :null => false
+    t.integer  "quantity",      :null => false
+    t.decimal  "price",         :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "sale_orders", :force => true do |t|
+    t.integer  "number",     :null => false
+    t.datetime "sold_at",    :null => false
+    t.integer  "client_id",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   add_foreign_key "clients", "people", name: "clients_person_id_fk", dependent: :delete
+
+  add_foreign_key "sale_order_products", "products", name: "sale_order_products_product_id_fk"
+  add_foreign_key "sale_order_products", "sale_orders", name: "sale_order_products_sale_order_id_fk"
+
+  add_foreign_key "sale_orders", "clients", name: "sale_orders_client_id_fk"
 
 end
