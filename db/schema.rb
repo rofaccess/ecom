@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20230528150950) do
+ActiveRecord::Schema.define(:version => 20230528151445) do
+
+  create_table "clients", :force => true do |t|
+    t.integer  "person_id",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "clients", ["person_id"], :name => "index_clients_on_person_id", :unique => true
 
   create_table "people", :force => true do |t|
     t.string   "first_name",      :limit => 100, :null => false
@@ -34,5 +42,7 @@ ActiveRecord::Schema.define(:version => 20230528150950) do
   end
 
   add_index "products", ["name"], :name => "index_products_on_name", :unique => true
+
+  add_foreign_key "clients", "people", name: "clients_person_id_fk", dependent: :delete
 
 end

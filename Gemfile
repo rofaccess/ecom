@@ -55,6 +55,9 @@ gem 'ruby-debug-base19x', '0.11.32', require: false
 # An interface which glues ruby-debug to IDEs like Eclipse (RDT), NetBeans and RubyMine. https://github.com/ruby-debug/ruby-debug-ide/tree/master
 gem 'ruby-debug-ide', '0.7.3', require: false
 
+# Adds foreign key helpers to migrations and correctly dumps foreign keys to schema.rb. https://github.com/matthuhiggins/foreigner
+gem 'foreigner', '1.7.4'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
