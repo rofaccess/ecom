@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :sale_order do
-    number { 1 }
-    sold_at { "2023-05-28 12:55:18" }
+    number { Faker::Number.number(5) }
+    sold_at { Faker::Time.between(2.days.ago, Time.now, :all) }
     client_id { 1 }
   end
 end

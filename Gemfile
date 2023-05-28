@@ -26,14 +26,14 @@ group :development do
   # help to kill N+1 queries and unused eager loading. https://github.com/flyerhzm/bullet/tree/5.4.3
   gem 'bullet', '5.4.3'
 
-  # A library for generating fake data such as names, addresses, and phone numbers. https://github.com/faker-ruby/faker/tree/v1.6.3
-  gem 'faker', '1.6.3'
-
   # A library for bulk insertion of data into your database using ActiveRecord. https://github.com/zdennis/activerecord-import/tree/v1.0.4
   gem 'activerecord-import', '1.0.3'
 end
 
 group :development, :test do
+  # A library for generating fake data such as names, addresses, and phone numbers. https://github.com/faker-ruby/faker/tree/v1.6.3
+  gem 'faker', '1.6.3'
+
   # RSpec for Rails. https://github.com/rspec/rspec-rails/tree/v3.9.1
   # Nota: Si esta gema se agrega solo en el grupo test, al usar 'rails g scaffold product name:string' no se generaran los specs
   # y se seguirá usando unit tests.
@@ -41,7 +41,9 @@ group :development, :test do
 
   # Factory Bot Rails. https://github.com/thoughtbot/factory_bot_rails/tree/v4.11.1
   # Los fixtures son reemplazados por factories al agregar esta gema
-  gem 'factory_bot_rails', '4.11.1'
+  # Nota: No pude hacer que FactoryBot setee el person_id en un cliente, tal vez no es una buena práctica por eso no
+  # es tan simple, o no lo hice de la manera adecuada porque no encontré la documentación correcta para esta versión.
+  # gem 'factory_bot_rails', '4.11.1'
 end
 
 # Easy file attachment management for ActiveRecord. https://github.com/thoughtbot/paperclip/tree/v4.2.4

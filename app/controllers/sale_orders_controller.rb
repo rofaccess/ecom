@@ -13,9 +13,9 @@ class SaleOrdersController < ApplicationController
     @sale_order = SaleOrder.new(sale_order_params)
 
     if @sale_order.save
-      render json: @sale_order, status: :created, location: @sale_order
+      render json: @sale_order, status: :created
     else
-      render json: @sale_order.errors, status: :unprocessable_entity
+      render json: @sale_order.errors.full_messages.to_sentence, status: :unprocessable_entity
     end
   end
 
