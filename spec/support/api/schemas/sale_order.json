@@ -4,14 +4,12 @@
   "properties": {
     "sale_order" : {
       "type" : "object",
-      "required" : ["client_id", "created_at", "id", "number", "sold_at", "updated_at"],
+      "required" : ["client_id", "id", "number", "sold_at"],
       "properties" : {
         "client_id" : { "type" : "integer" },
-        "created_at" : { "type" : "string", "format": "date-time" },
         "id" : { "type" : "integer" },
         "number" : { "type" : "integer" },
-        "sold_at" : { "type" : "string", "format": "date-time" },
-        "updated_at" : { "type" : "string", "format": "date-time" }
+        "sold_at" : { "type" : "string", "format": "date-time" }
       }
     }
   }

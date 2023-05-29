@@ -4,7 +4,7 @@ class SaleOrdersController < ApplicationController
   def index
     @sale_orders = SaleOrder.all
 
-    render json: @sale_orders
+    render json: @sale_orders, root: false
   end
 
   # POST /sale_orders
