@@ -2,7 +2,7 @@
 # - https://nimblehq.co/blog/testing-rails-json-api-with-rspec
 require 'rails_helper'
 
-RSpec.describe SaleOrdersController, :type => :controller do
+RSpec.describe Api::V1::SaleOrdersController, :type => :controller do
   fixtures :people, :clients, :sale_orders
 
   let(:valid_attributes) {

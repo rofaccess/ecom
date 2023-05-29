@@ -1,5 +1,15 @@
+require 'api_constraints'
+
 Ecom::Application.routes.draw do
-  resources :sale_orders, only: [:index, :create]
+  namespace :api, defaults: {format: 'json'} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      resources :sale_orders, only: [:index, :create]
+    end
+
+    # scope module: :v2, constraints: ApiConstraints.new(version: 2) do
+    #   resources :sale_orders, only: [:index, :create]
+    # end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
