@@ -12,6 +12,9 @@ group :test do
   # Code coverage for Ruby with a powerful configuration library and automatic merging of coverage across test suites.
   # https://github.com/simplecov-ruby/simplecov/tree/v0.17.1
   gem 'simplecov', '0.17.1', require: false
+
+  # Ruby JSON Schema Validator. https://github.com/voxpupuli/json-schema/tree/v2.6.2
+  gem "json-schema", '2.6.2'
 end
 
 group :development do

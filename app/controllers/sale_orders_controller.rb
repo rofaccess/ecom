@@ -15,7 +15,7 @@ class SaleOrdersController < ApplicationController
     if @sale_order.save
       render json: @sale_order, status: :created
     else
-      render json: @sale_order.errors.full_messages.to_sentence, status: :unprocessable_entity
+      render json: { errors: @sale_order.errors.full_messages.to_sentence, code: :validation_error }, status: :unprocessable_entity
     end
   end
 

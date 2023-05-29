@@ -1,6 +1,5 @@
 # From
 # - https://nimblehq.co/blog/testing-rails-json-api-with-rspec
-# - https://blog.devgenius.io/testing-a-rails-api-with-rspec-82dedc9f15df
 require 'rails_helper'
 
 RSpec.describe SaleOrdersController, :type => :controller do
@@ -26,13 +25,16 @@ RSpec.describe SaleOrdersController, :type => :controller do
   describe "GET #index" do
     before { get :index, {}, valid_session }
 
+    it "returns correct json format" do
+      expect(response).to match_response_schema("sale_orders")
+    end
+
     it "returns all sale orders" do
       expect(json.size).to eq(SaleOrder.count)
     end
 
     it "returns a success response" do
-      expect(response).to be_successful
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(:success)
     end
   end
 
@@ -40,17 +42,8 @@ RSpec.describe SaleOrdersController, :type => :controller do
     context "with valid params" do
       before { post :create, {sale_order: valid_attributes}, valid_session }
 
-      it "returns the number" do
-        expect(json["sale_order"]["number"]).to eq(valid_attributes[:number].to_i)
-      end
-
-      it "returns the sold_at" do
-        pending "fix date compare"
-        expect(json["sale_order"]["sold_at"]).to eq(valid_attributes[:sold_at])
-      end
-
-      it "returns the client_id" do
-        expect(json["sale_order"]["client_id"]).to eq(valid_attributes[:client_id])
+      it "returns correct json format" do
+        expect(response).to match_response_schema("sale_order")
       end
 
       it "returns status code 201" do
@@ -62,7 +55,15 @@ RSpec.describe SaleOrdersController, :type => :controller do
       before { post :create, {sale_order: invalid_attributes}, valid_session }
 
       it "returns error message" do
-        expect(response.body).to eq("Sold at can't be blank")
+        expect(response).to match_response_schema("errors")
+      end
+
+      it "returns error message" do
+        expect(json["errors"]).to eq("Sold at can't be blank")
+      end
+
+      it "returns error code" do
+        expect(json["code"]).to eq("validation_error")
       end
 
       it "returns status code 422" do

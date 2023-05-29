@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "required": ["sale_order"],
+  "properties": {
+    "sale_order" : {
+      "type" : "object",
+      "required" : ["client_id", "created_at", "id", "number", "sold_at", "updated_at"],
+      "properties" : {
+        "client_id" : { "type" : "integer" },
+        "created_at" : { "type" : "string", "format": "date-time" },
+        "id" : { "type" : "integer" },
+        "number" : { "type" : "integer" },
+        "sold_at" : { "type" : "string", "format": "date-time" },
+        "updated_at" : { "type" : "string", "format": "date-time" }
+      }
+    }
+  }
+}
