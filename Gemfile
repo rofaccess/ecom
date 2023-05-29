@@ -60,6 +60,9 @@ gem 'ruby-debug-ide', '0.7.3', require: false
 # Adds foreign key helpers to migrations and correctly dumps foreign keys to schema.rb. https://github.com/matthuhiggins/foreigner
 gem 'foreigner', '1.7.4'
 
+# ActiveModel::Serializer implementation and Rails hooks. https://github.com/rails-api/active_model_serializers/tree/v0.9.9
+gem 'active_model_serializers', '0.9.9'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
