@@ -13,7 +13,9 @@ Ingresar a la carpeta
 
 Si no se configuró por defecto el gemset al ingresar a la carpeta, ejecutar
 > rvm use 1.9.3
+
 > rvm gemset create ecom
+
 > rvm gemset use ecom
 
 Instalar bundler
