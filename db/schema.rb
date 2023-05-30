@@ -11,26 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20230528165008) do
+ActiveRecord::Schema.define(:version => 20230530150950) do
 
   create_table "clients", :force => true do |t|
-    t.integer  "person_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "clients", ["person_id"], :name => "index_clients_on_person_id", :unique => true
-
   create_table "people", :force => true do |t|
     t.string   "first_name",      :limit => 100, :null => false
     t.string   "last_name",       :limit => 100, :null => false
-    t.string   "document_number", :limit => 100, :null => false
-    t.string   "address",         :limit => 150, :null => false
-    t.string   "phone",           :limit => 50,  :null => false
+    t.string   "document_number", :limit => 100
+    t.string   "address",         :limit => 150
+    t.string   "phone",           :limit => 50
+    t.integer  "client_id"
+    t.integer  "user_id"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
 
+  add_index "people", ["client_id", "user_id"], :name => "index_people_on_client_id_and_user_id", :unique => true
   add_index "people", ["document_number"], :name => "index_people_on_document_number", :unique => true
 
   create_table "products", :force => true do |t|
@@ -60,7 +60,19 @@ ActiveRecord::Schema.define(:version => 20230528165008) do
     t.datetime "updated_at", :null => false
   end
 
-  add_foreign_key "clients", "people", name: "clients_person_id_fk", dependent: :delete
+  create_table "users", :force => true do |t|
+    t.string   "name",            :null => false
+    t.string   "email",           :null => false
+    t.string   "password_digest", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["name"], :name => "index_users_on_name", :unique => true
+
+  add_foreign_key "people", "clients", name: "people_client_id_fk", dependent: :delete
+  add_foreign_key "people", "users", name: "people_user_id_fk", dependent: :delete
 
   add_foreign_key "sale_order_products", "products", name: "sale_order_products_product_id_fk"
   add_foreign_key "sale_order_products", "sale_orders", name: "sale_order_products_sale_order_id_fk"

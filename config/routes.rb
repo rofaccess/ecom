@@ -1,6 +1,12 @@
 require 'api_constraints'
 
 Ecom::Application.routes.draw do
+
+  # Authentication routes
+  # resources :users, param: :_username
+  # post '/auth/login', to: 'authentication#login'
+  # get '/*a', to: 'application#not_found'
+
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :sale_orders, only: [:index, :create]

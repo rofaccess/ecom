@@ -1,6 +1,7 @@
 person:
   first_name: <%= Faker::Name.first_name %>
   last_name: <%= Faker::Name.last_name %>
-  document_number: <%= Faker::Name.last_name %>
+  document_number: <%= Faker::Number.number(5) %>
   address: <%= Faker::Address.street_address %>
   phone: <%= Faker::PhoneNumber.cell_phone %>
+  client: client

@@ -66,8 +66,11 @@ gem 'foreigner', '1.7.4'
 # ActiveModel::Serializer implementation and Rails hooks. https://github.com/rails-api/active_model_serializers/tree/v0.9.9
 gem 'active_model_serializers', '0.9.9'
 
+# Use Json Web Token (JWT) for token based authentication
+gem 'jwt', '1.5.6'
+
 # To use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
