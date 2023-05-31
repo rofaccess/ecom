@@ -33,7 +33,9 @@ Ejecutar los seeds
 Ejecutar la aplicación
 > rail s
 
-Acceder a: http://localhost:3000/api/sale_orders en el navegador
+Acceder a: http://localhost:3000/api/sale_orders en el navegador o
+en consola:
+> curl -w '\n' http://localhost:3000/api/sale_orders
 
 ## Logros
 No pude lograr los requisitos principales del Desafío. Aún así voy a listar algunas cosas hice:
